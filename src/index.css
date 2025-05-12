@@ -64,3 +64,13 @@
 .chart-gradient {
   background: linear-gradient(180deg, rgba(73, 86, 227, 0.2) 0%, rgba(73, 86, 227, 0) 100%);
 }
+
+/* Feature card hover animations */
+.feature-card-hover {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.feature-card-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
