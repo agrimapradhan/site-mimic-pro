@@ -4,7 +4,7 @@ import { Activity, Check, Flag, TrendingDown, Clock, Calendar } from "lucide-rea
 
 const Solutions = () => {
   return (
-    <section className="py-16 md:py-24 bg-black text-white">
+    <section className="py-16 md:py-24 bg-white text-dark">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500">
@@ -12,7 +12,7 @@ const Solutions = () => {
             <br />
             AI-Powered Solutions
           </h2>
-          <p className="text-gray-300 mb-16">
+          <p className="text-gray-700 mb-16">
             Unlock scalable solutions that turn complexity into clarity and drive unstoppable revenue momentum.
           </p>
         </div>
@@ -20,22 +20,24 @@ const Solutions = () => {
         {/* "What are we solving" wheel */}
         <div className="relative max-w-4xl mx-auto mb-20">
           {/* Central circle */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-black border-4 border-purple-600 rounded-full flex items-center justify-center z-30">
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white border-4 border-purple-600 rounded-full flex items-center justify-center z-30 solving-center-circle">
             <div className="text-center">
               <div className="text-xl font-bold text-white">What are we</div>
-              <div className="text-3xl font-bold text-purple-500">Solving?</div>
+              <div className="text-3xl font-bold text-white">Solving?</div>
             </div>
           </div>
 
-          {/* Dotted circle */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border-2 border-dashed border-gray-600 z-10"></div>
+          {/* Multiple concentric circles */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border-2 border-dashed border-gray-400 z-10"></div>
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border-2 border-dashed border-gray-300 z-10"></div>
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border-2 border-dashed border-gray-200 z-10"></div>
 
           {/* Problem cards */}
           <div className="w-full h-[600px] relative">
             {/* Card 1 - Top Left */}
             <div className="absolute top-0 left-[20%] transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-red-500 p-1 rounded-full mt-1">
                       <Activity size={16} className="text-white" />
@@ -52,8 +54,8 @@ const Solutions = () => {
 
             {/* Card 2 - Top Right */}
             <div className="absolute top-[15%] right-[10%] transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-green-500 p-1 rounded-full mt-1">
                       <Check size={16} className="text-white" />
@@ -70,8 +72,8 @@ const Solutions = () => {
             
             {/* Card 3 - Mid Right */}
             <div className="absolute top-[50%] right-0 transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-green-500 p-1 rounded-full mt-1">
                       <Clock size={16} className="text-white" />
@@ -88,8 +90,8 @@ const Solutions = () => {
 
             {/* Card 4 - Bottom Right */}
             <div className="absolute bottom-[15%] right-[10%] transform translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-72">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-72">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-red-500 p-1 rounded-full mt-1">
                       <Calendar size={16} className="text-white" />
@@ -106,8 +108,8 @@ const Solutions = () => {
 
             {/* Card 5 - Bottom */}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-yellow-500 p-1 rounded-full mt-1">
                       <TrendingDown size={16} className="text-white" />
@@ -124,8 +126,8 @@ const Solutions = () => {
 
             {/* Card 6 - Bottom Left */}
             <div className="absolute bottom-[15%] left-[10%] transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-black shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
                   <div className="flex items-start gap-2">
                     <div className="bg-yellow-500 p-1 rounded-full mt-1">
                       <Flag size={16} className="text-white" />
@@ -150,7 +152,7 @@ const Solutions = () => {
               <br />
               Solving Above Problems.
             </h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-600 mb-6">
               Solve the problems of siloed processes and data to unleash your revenue potential
             </p>
             
@@ -158,8 +160,8 @@ const Solutions = () => {
             <div className="flex items-center space-x-4 mb-8">
               {[1, 2, 3, 4].map((step) => (
                 <div key={step} className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                    <span className="text-black font-medium">{step}</span>
+                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                    <span className="text-white font-medium">{step}</span>
                   </div>
                   {step < 4 && <div className="w-4 border-t border-dashed border-gray-500"></div>}
                 </div>
@@ -169,11 +171,11 @@ const Solutions = () => {
             <h4 className="text-lg font-bold text-blue-400 mb-3">
               Do Missed Revenue Opportunities Keep You Up at Night?
             </h4>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-600 mb-6">
               With Crenovent, leverage leading indicators and AI insights to identify and act on revenue opportunities before they pass by, ensuring you never miss out on potential gains.
             </p>
             
-            <button className="flex items-center text-gray-300 hover:text-white">
+            <button className="flex items-center text-gray-600 hover:text-blue-500">
               <span>Play Demo</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -186,7 +188,7 @@ const Solutions = () => {
               <img 
                 src="/lovable-uploads/d12ba7a0-1418-47cc-8fcf-1b85c48a666e.png" 
                 alt="Platform Demo" 
-                className="w-full h-auto rounded-lg" 
+                className="w-full h-auto rounded-lg shadow-lg" 
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center cursor-pointer">
