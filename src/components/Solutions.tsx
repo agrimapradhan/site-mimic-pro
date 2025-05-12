@@ -1,10 +1,9 @@
-
 import React from "react";
 import { Activity, Check, Flag, TrendingDown, Clock, Calendar } from "lucide-react";
 
 const Solutions = () => {
   return (
-    <section className="py-16 md:py-24 bg-white text-dark">
+    <section className="py-16 md:py-24 bg-white text-black">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500">
@@ -152,7 +151,7 @@ const Solutions = () => {
               <br />
               Solving Above Problems.
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-black mb-6">
               Solve the problems of siloed processes and data to unleash your revenue potential
             </p>
             
@@ -171,11 +170,11 @@ const Solutions = () => {
             <h4 className="text-lg font-bold text-blue-400 mb-3">
               Do Missed Revenue Opportunities Keep You Up at Night?
             </h4>
-            <p className="text-gray-600 mb-6">
+            <p className="text-black mb-6">
               With Crenovent, leverage leading indicators and AI insights to identify and act on revenue opportunities before they pass by, ensuring you never miss out on potential gains.
             </p>
             
-            <button className="flex items-center text-gray-600 hover:text-blue-500">
+            <button className="flex items-center text-black hover:text-blue-500">
               <span>Play Demo</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
