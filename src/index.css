@@ -74,3 +74,17 @@
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
+/* What are we solving section specific styles */
+.solving-card {
+  transition: transform 0.3s ease;
+}
+
+.solving-card:hover {
+  transform: scale(1.05);
+}
+
+.solving-center-circle {
+  background: linear-gradient(135deg, #4956E3 0%, #9b87f5 100%);
+  box-shadow: 0 0 30px rgba(73, 86, 227, 0.4);
+}
