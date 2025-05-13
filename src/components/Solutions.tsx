@@ -1,7 +1,18 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { Activity, Check, Flag, TrendingDown, Clock, Calendar } from "lucide-react";
 
 const Solutions = () => {
+  const [flipped, setFlipped] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlipped(prev => !prev);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-16 md:py-24 bg-white text-black">
       <div className="container">
@@ -35,8 +46,8 @@ const Solutions = () => {
           <div className="w-full h-[600px] relative">
             {/* Card 1 - Top Left */}
             <div className="absolute top-0 left-[20%] transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-red-500 p-1 rounded-full mt-1">
                       <Activity size={16} className="text-white" />
@@ -53,8 +64,8 @@ const Solutions = () => {
 
             {/* Card 2 - Top Right */}
             <div className="absolute top-[15%] right-[10%] transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-green-500 p-1 rounded-full mt-1">
                       <Check size={16} className="text-white" />
@@ -71,8 +82,8 @@ const Solutions = () => {
             
             {/* Card 3 - Mid Right */}
             <div className="absolute top-[50%] right-0 transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-green-500 p-1 rounded-full mt-1">
                       <Clock size={16} className="text-white" />
@@ -89,8 +100,8 @@ const Solutions = () => {
 
             {/* Card 4 - Bottom Right */}
             <div className="absolute bottom-[15%] right-[10%] transform translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-72">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-72 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-red-500 p-1 rounded-full mt-1">
                       <Calendar size={16} className="text-white" />
@@ -107,8 +118,8 @@ const Solutions = () => {
 
             {/* Card 5 - Bottom */}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-yellow-500 p-1 rounded-full mt-1">
                       <TrendingDown size={16} className="text-white" />
@@ -125,8 +136,8 @@ const Solutions = () => {
 
             {/* Card 6 - Bottom Left */}
             <div className="absolute bottom-[15%] left-[10%] transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+              <div className="bg-white shadow-lg rounded-lg p-4 w-64 relative" style={{ perspective: '1000px' }}>
+                <div className={`bg-gray-100 rounded-lg p-4 shadow-lg transition-transform duration-500 ${flipped ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
                   <div className="flex items-start gap-2">
                     <div className="bg-yellow-500 p-1 rounded-full mt-1">
                       <Flag size={16} className="text-white" />
