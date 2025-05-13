@@ -66,7 +66,8 @@ const FeatureCard: React.FC<{ content: FeatureCardContent; isFlipped: boolean }>
 };
 
 const Features = () => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  // Create a state object to track each card's flipped state separately
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
   
   // Card content data
   const featureCards: FeatureCardContent[] = [
@@ -259,10 +260,21 @@ const Features = () => {
   ];
 
   useEffect(() => {
-    // Create a timer to flip cards every 3 seconds
-    const flipTimer = setInterval(() => {
-      setIsFlipped(prevState => !prevState);
-    }, 3000);
+    // Function to flip a random card
+    const flipRandomCard = () => {
+      // Get a random card ID
+      const cardIds = featureCards.map(card => card.id);
+      const randomCardId = cardIds[Math.floor(Math.random() * cardIds.length)];
+      
+      // Flip the selected card
+      setFlippedCards(prev => ({
+        ...prev,
+        [randomCardId]: !prev[randomCardId]
+      }));
+    };
+
+    // Set interval to flip a random card every 3 seconds
+    const flipTimer = setInterval(flipRandomCard, 3000);
 
     // Clean up the timer
     return () => clearInterval(flipTimer);
@@ -286,7 +298,7 @@ const Features = () => {
             <FeatureCard 
               key={card.id}
               content={card}
-              isFlipped={isFlipped}
+              isFlipped={!!flippedCards[card.id]}
             />
           ))}
         </div>
