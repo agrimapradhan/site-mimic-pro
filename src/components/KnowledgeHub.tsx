@@ -1,6 +1,5 @@
 
 import React, { useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -64,7 +63,7 @@ const KnowledgeHub = () => {
         <div className="mt-16 relative px-12">
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
             className="w-full"
@@ -75,13 +74,13 @@ const KnowledgeHub = () => {
                   title: "How AI Agents Are Revolutionizing Revenue Operations",
                   description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
                   image: "/placeholder.svg",
-                  isActive: true
+                  isActive: false
                 },
                 {
                   title: "How AI Agents Are Revolutionizing Revenue Operations",
                   description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
                   image: "/placeholder.svg",
-                  isActive: false
+                  isActive: true
                 },
                 {
                   title: "How AI Agents Are Revolutionizing Revenue Operations",
@@ -95,13 +94,13 @@ const KnowledgeHub = () => {
                     title={card.title}
                     description={card.description}
                     image={card.image}
-                    isActive={card.isActive}
+                    isActive={index === 1}
                   />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
-            <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+            <CarouselPrevious className="absolute -left-4 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+            <CarouselNext className="absolute -right-4 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
           </Carousel>
         </div>
       </div>
