@@ -60,7 +60,7 @@ const KnowledgeHub = () => {
           </p>
         </div>
 
-        <div className="mt-16 relative px-12">
+        <div className="mt-16 relative px-2 md:px-16">
           <Carousel
             opts={{
               align: "center",
@@ -99,8 +99,8 @@ const KnowledgeHub = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-4 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
-            <CarouselNext className="absolute -right-4 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+            <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+            <CarouselNext className="absolute -right-6 md:-right-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
           </Carousel>
         </div>
       </div>
