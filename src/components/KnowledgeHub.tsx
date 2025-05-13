@@ -1,29 +1,36 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface KnowledgeCardProps {
   title: string;
   description: string;
   image: string;
-  category: string;
 }
 
-const KnowledgeCard: React.FC<KnowledgeCardProps> = ({ title, description, image, category }) => {
+const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
+  title,
+  description,
+  image,
+}) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
-      <div className="relative h-48 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 h-full">
+      <div className="relative h-48 overflow-hidden bg-gray-200">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
       <div className="p-6">
-        <div className="text-xs font-semibold text-primary mb-2">{category}</div>
-        <h3 className="text-lg font-semibold mb-3 text-dark">{title}</h3>
-        <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
-        <Button variant="outline" className="w-full flex items-center justify-center gap-2">
-          <span>Read Article</span>
-          <ArrowRight size={16} />
-        </Button>
+        <h3 className="text-xl font-bold mb-3 text-dark">{title}</h3>
+        <p className="text-gray-700 mb-6 line-clamp-3">{description}</p>
+        <button className="text-[#2977b5] font-medium hover:underline flex items-center">
+          Discover More
+        </button>
       </div>
     </div>
   );
@@ -31,36 +38,42 @@ const KnowledgeCard: React.FC<KnowledgeCardProps> = ({ title, description, image
 
 const KnowledgeHub = () => {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center text-dark">
-          Crenovent's Knowledge Hub
-        </h2>
-        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-          Explore our latest insights, guides, and best practices for optimizing revenue operations
-        </p>
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-white to-blue-50 opacity-80"></div>
+      <div className="container relative z-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-dark">
+            Crenovent's Knowledge Hub
+          </h2>
+          <p className="text-gray-600 text-lg mt-2 max-w-2xl mx-auto">
+            Unlock Expert Insights on AI, RevOps, and Revenue Growth Strategies.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <KnowledgeCard 
-            title="How to Scale Your Revenue Operations with AI"
-            description="Learn how artificial intelligence can transform your revenue operations and drive growth across your organization."
-            image="/placeholder.svg"
-            category="Revenue Intelligence"
-          />
-          
-          <KnowledgeCard 
-            title="Why a Unified Quote-to-Cash Process Matters"
-            description="Discover how integrating your quote-to-cash processes can eliminate silos and increase revenue efficiency."
-            image="/placeholder.svg"
-            category="Process Optimization"
-          />
-          
-          <KnowledgeCard 
-            title="5 Ways to Accelerate Sales Cycles with Automation"
-            description="Explore practical strategies to shorten your sales cycles and close deals faster using automation technology."
-            image="/placeholder.svg"
-            category="Sales Enablement"
-          />
+        <div className="mt-16">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {[1, 2, 3].map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3 pl-4">
+                  <KnowledgeCard
+                    title="How AI Agents Are Revolutionizing Revenue Operations"
+                    description="Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making."
+                    image="/placeholder.svg"
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8 gap-4">
+              <CarouselPrevious className="relative inset-0 translate-y-0 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark" />
+              <CarouselNext className="relative inset-0 translate-y-0 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

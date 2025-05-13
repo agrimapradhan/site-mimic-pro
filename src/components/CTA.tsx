@@ -4,49 +4,36 @@ import { Button } from "@/components/ui/button";
 
 const CTA = () => {
   return (
-    <section className="py-20 md:py-24 bg-dark-blue relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-purple-dark opacity-90"></div>
-        <img 
-          src="/placeholder.svg"
-          alt="Background" 
-          className="w-full h-full object-cover opacity-20"
-        />
-      </div>
-      
+    <section className="py-16 md:py-24 bg-[#06114F] text-white relative overflow-hidden">      
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Supercharge Your Revenue Teams. Let AI Drive the Playbook.
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              Smash Silos.<br />
+              Align Revenue Teams.<br />
+              Let AI Run the Playbook.
             </h2>
-            <p className="text-gray-300 mb-8">
-              Join leading enterprises that have transformed their revenue operations with Crenovent's AI-powered platform.
+            <p className="text-white/80 mb-8 text-lg max-w-lg">
+              Crenovent unifies marketing, sales, and customer success on one smart platform — 
+              giving your GTM teams real-time insights, automated nudges, and complete pipeline 
+              visibility. No more handoffs lost in Slack or campaigns flying blind.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-white text-purple-dark hover:bg-gray-100">Schedule a Demo</Button>
-              <Button variant="outline" className="text-white border-white hover:bg-white/10">Contact Sales</Button>
+              <Button className="bg-[#4ACCCD] text-dark hover:bg-[#3dbdbe] px-8 py-6 h-auto text-base font-medium">
+                Book a Demo
+              </Button>
+              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10 px-8 py-6 h-auto text-base font-medium">
+                Discover more
+              </Button>
             </div>
           </div>
           
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <img 
-              src="/placeholder.svg" 
-              alt="Crenovent Dashboard" 
-              className="rounded-xl shadow-2xl border border-white/20"
+              src="/lovable-uploads/d52b6e88-421a-41a8-8dba-0e8e3935ad9d.png"
+              alt="AI Dashboard" 
+              className="w-full max-w-lg mx-auto"
             />
-            <div className="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-lg">
-              <div className="flex items-center gap-2">
-                <div className="relative w-10 h-10">
-                  <div className="absolute inset-0 rounded-full bg-purple"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold">C</div>
-                </div>
-                <div>
-                  <div className="text-sm font-bold">Crenovent AI</div>
-                  <div className="text-xs text-gray-500">Revenue Assistant</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
