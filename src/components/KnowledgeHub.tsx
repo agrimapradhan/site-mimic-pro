@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useCarousel } from "@/components/ui/carousel";
 
 interface KnowledgeCardProps {
   title: string;
@@ -47,6 +48,25 @@ const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 };
 
 const KnowledgeHub = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const cards = [
+    {
+      title: "Harnessing AI for Revenue Growth",
+      description: "Discover how advanced AI tools are transforming revenue operations and driving sustainable growth in today's competitive landscape.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "How AI Agents Are Revolutionizing Revenue Operations",
+      description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "Future-Ready Revenue Strategies",
+      description: "Learn about emerging revenue strategies that leverage AI and advanced analytics to future-proof your business against market disruptions.",
+      image: "/placeholder.svg"
+    }
+  ];
+  
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-white to-blue-50 opacity-80"></div>
@@ -61,50 +81,82 @@ const KnowledgeHub = () => {
         </div>
 
         <div className="mt-16 relative px-2 md:px-16">
-          <Carousel
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {[
-                {
-                  title: "How AI Agents Are Revolutionizing Revenue Operations",
-                  description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
-                  image: "/placeholder.svg",
-                  isActive: false
-                },
-                {
-                  title: "How AI Agents Are Revolutionizing Revenue Operations",
-                  description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
-                  image: "/placeholder.svg",
-                  isActive: true
-                },
-                {
-                  title: "How AI Agents Are Revolutionizing Revenue Operations",
-                  description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
-                  image: "/placeholder.svg",
-                  isActive: false
-                }
-              ].map((card, index) => (
-                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3 pl-4">
-                  <KnowledgeCard
-                    title={card.title}
-                    description={card.description}
-                    image={card.image}
-                    isActive={index === 1}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
-            <CarouselNext className="absolute -right-6 md:-right-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
-          </Carousel>
+          <CarouselWithCenteredActive />
         </div>
       </div>
     </section>
+  );
+};
+
+// Extracted carousel component with enhanced functionality
+const CarouselWithCenteredActive = () => {
+  const carouselCards = [
+    {
+      title: "Harnessing AI for Revenue Growth",
+      description: "Discover how advanced AI tools are transforming revenue operations and driving sustainable growth in today's competitive landscape.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "How AI Agents Are Revolutionizing Revenue Operations",
+      description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "Future-Ready Revenue Strategies",
+      description: "Learn about emerging revenue strategies that leverage AI and advanced analytics to future-proof your business against market disruptions.",
+      image: "/placeholder.svg"
+    }
+  ];
+  
+  const [activeIndex, setActiveIndex] = useState(1);
+  const { api } = useCarousel();
+  
+  // Update active index when carousel changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const onChange = () => {
+      if (!api) return;
+      // Get current slide index
+      const currentSlide = api.selectedScrollSnap();
+      setActiveIndex(currentSlide);
+    };
+    
+    api.on("select", onChange);
+    return () => {
+      api.off("select", onChange);
+    };
+  }, [api]);
+  
+  return (
+    <Carousel
+      opts={{
+        align: "center",
+        loop: true,
+      }}
+      className="w-full"
+      setApi={(carouselApi) => {
+        if (carouselApi) {
+          // Initialize with middle card active
+          carouselApi.scrollTo(1);
+        }
+      }}
+    >
+      <CarouselContent>
+        {carouselCards.map((card, index) => (
+          <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3 pl-4">
+            <KnowledgeCard
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              isActive={index === activeIndex}
+            />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="absolute -left-6 md:-left-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+      <CarouselNext className="absolute -right-6 md:-right-12 top-1/2 transform -translate-y-1/2 h-10 w-10 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 hover:text-dark shadow-md" />
+    </Carousel>
   );
 };
 
