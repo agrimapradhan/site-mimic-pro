@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Activity, TrendingDown, Clock, Calendar, Check, Flag } from "lucide-react";
 
@@ -66,7 +67,7 @@ const Solutions = () => {
         {/* "What are we solving" section */}
         <div className="relative max-w-4xl mx-auto mb-20">
           {/* Center circle */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500 rounded-full flex items-center justify-center z-50 solving-center-circle shadow-lg">
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full flex items-center justify-center z-50 shadow-lg">
             <div className="text-center">
               <div className="text-xl font-bold text-white">What are we</div>
               <div className="text-3xl font-bold text-white">Solving?</div>
@@ -84,28 +85,40 @@ const Solutions = () => {
               // Calculate angle for proper placement in a circle
               const angle = (index * 60) % 360; // 6 cards evenly distributed (360/6 = 60 degrees)
               const radians = (angle * Math.PI) / 180;
-              const radius = 220; // Distance from center
+              const radius = 250; // Distance from center - increased to match the image
               
               // Calculate position in the circle
               const x = Math.cos(radians) * radius;
               const y = Math.sin(radians) * radius;
+
+              // Set z-index for proper layering based on index
+              const zIndex = 30 + index;
               
+              // Get the icon color based on the card's color property
+              let iconBgColor = "bg-green-500";
+              if (card.color === "red") {
+                iconBgColor = "bg-red-500";
+              } else if (card.color === "yellow") {
+                iconBgColor = "bg-yellow-500";
+              }
+
               return (
                 <div 
                   key={card.id}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 hover:scale-150 z-30"
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 hover:scale-150"
                   style={{ 
                     left: `calc(50% + ${x}px)`, 
-                    top: `calc(50% + ${y}px)` 
+                    top: `calc(50% + ${y}px)`,
+                    zIndex: zIndex
                   }}
                 >
                   <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                    <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+                    <div className="bg-gray-50 rounded-lg p-4">
                       <div className="flex items-start gap-2">
-                        <div className={`bg-${card.color}-500 p-1 rounded-full mt-1`}>
+                        <div className={`${iconBgColor} p-1 rounded-full mt-1`}>
                           {card.icon}
                         </div>
-                        <p className="text-black text-sm">
+                        <p className="text-black text-sm font-medium">
                           {card.question}
                         </p>
                       </div>
@@ -118,7 +131,7 @@ const Solutions = () => {
             {/* Gray connecting dots */}
             {[30, 90, 150, 210, 270, 330].map((angle, i) => {
               const radians = (angle * Math.PI) / 180;
-              const radius = 150; // Middle of the circle paths
+              const radius = 180; // Middle of the circle paths - adjusted to match the image
               const x = Math.cos(radians) * radius;
               const y = Math.sin(radians) * radius;
               
@@ -131,7 +144,7 @@ const Solutions = () => {
                     marginTop: y 
                   }}
                 >
-                  <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
+                  <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
                 </div>
               );
             })}
