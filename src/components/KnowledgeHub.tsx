@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useCarousel } from "@/components/ui/carousel";
+
+// Import useCarousel directly from the carousel file
+import useEmblaCarousel from "embla-carousel-react";
 
 interface KnowledgeCardProps {
   title: string;
@@ -48,25 +50,6 @@ const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 };
 
 const KnowledgeHub = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const cards = [
-    {
-      title: "Harnessing AI for Revenue Growth",
-      description: "Discover how advanced AI tools are transforming revenue operations and driving sustainable growth in today's competitive landscape.",
-      image: "/placeholder.svg"
-    },
-    {
-      title: "How AI Agents Are Revolutionizing Revenue Operations",
-      description: "Discover how intelligent AI agents are transforming the way RevOps teams automate processes, align departments, and drive smarter decision-making.",
-      image: "/placeholder.svg"
-    },
-    {
-      title: "Future-Ready Revenue Strategies",
-      description: "Learn about emerging revenue strategies that leverage AI and advanced analytics to future-proof your business against market disruptions.",
-      image: "/placeholder.svg"
-    }
-  ];
-  
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-white to-blue-50 opacity-80"></div>
@@ -109,24 +92,27 @@ const CarouselWithCenteredActive = () => {
   ];
   
   const [activeIndex, setActiveIndex] = useState(1);
-  const { api } = useCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "center",
+    loop: true
+  });
   
   // Update active index when carousel changes
   useEffect(() => {
-    if (!api) return;
+    if (!emblaApi) return;
     
     const onChange = () => {
-      if (!api) return;
+      if (!emblaApi) return;
       // Get current slide index
-      const currentSlide = api.selectedScrollSnap();
+      const currentSlide = emblaApi.selectedScrollSnap();
       setActiveIndex(currentSlide);
     };
     
-    api.on("select", onChange);
+    emblaApi.on("select", onChange);
     return () => {
-      api.off("select", onChange);
+      emblaApi.off("select", onChange);
     };
-  }, [api]);
+  }, [emblaApi]);
   
   return (
     <Carousel
@@ -142,7 +128,7 @@ const CarouselWithCenteredActive = () => {
         }
       }}
     >
-      <CarouselContent>
+      <CarouselContent className="py-4">
         {carouselCards.map((card, index) => (
           <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3 pl-4">
             <KnowledgeCard
