@@ -54,7 +54,7 @@ const Solutions = () => {
     <section className="py-16 md:py-24 bg-white text-black">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#3C7A9F]">
             Revolutionizing Revenue Challenges with 
             <br />
             AI-Powered Solutions
@@ -67,7 +67,7 @@ const Solutions = () => {
         {/* "What are we solving" section */}
         <div className="relative max-w-4xl mx-auto mb-20">
           {/* Center circle */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full flex items-center justify-center z-50 shadow-lg">
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-[#3C7A9F] to-indigo-600 rounded-full flex items-center justify-center z-50 shadow-lg">
             <div className="text-center">
               <div className="text-xl font-bold text-white">What are we</div>
               <div className="text-3xl font-bold text-white">Solving?</div>
@@ -154,7 +154,7 @@ const Solutions = () => {
         {/* Demo Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-blue-500">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#000000]">
               Check Our Demo's To
               <br />
               Solving Above Problems.
@@ -167,7 +167,7 @@ const Solutions = () => {
             <div className="flex items-center space-x-4 mb-8">
               {[1, 2, 3, 4].map((step) => (
                 <div key={step} className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-[#3C7A9F] flex items-center justify-center">
                     <span className="text-white font-medium">{step}</span>
                   </div>
                   {step < 4 && <div className="w-4 border-t border-dashed border-gray-500"></div>}
@@ -175,14 +175,14 @@ const Solutions = () => {
               ))}
             </div>
             
-            <h4 className="text-lg font-bold text-blue-400 mb-3">
+            <h4 className="text-lg font-bold text-[#3C7A9F] mb-3">
               Do Missed Revenue Opportunities Keep You Up at Night?
             </h4>
             <p className="text-black mb-6">
               With Crenovent, leverage leading indicators and AI insights to identify and act on revenue opportunities before they pass by, ensuring you never miss out on potential gains.
             </p>
             
-            <button className="flex items-center text-black hover:text-blue-500">
+            <button className="flex items-center text-black hover:text-[#3C7A9F]">
               <span>Play Demo</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -198,7 +198,7 @@ const Solutions = () => {
                 className="w-full h-auto rounded-lg shadow-lg" 
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center cursor-pointer">
+                <div className="w-16 h-16 bg-[#3C7A9F] rounded-full flex items-center justify-center cursor-pointer">
                   <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" strokeWidth="2" fill="white" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                   </svg>
