@@ -1,7 +1,104 @@
-import React from "react";
-import { Activity, Check, Flag, TrendingDown, Clock, Calendar } from "lucide-react";
+
+import React, { useEffect, useRef } from "react";
+import { Activity, TrendingDown, Clock, Calendar, Check, Flag } from "lucide-react";
+
+interface SolvingCard {
+  id: number;
+  icon: React.ReactNode;
+  color: string;
+  question: string;
+  position: { angle: number; radius: number };
+}
 
 const Solutions = () => {
+  const animationRef = useRef<number | null>(null);
+  const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
+
+  // Data for solving cards
+  const solvingCards: SolvingCard[] = [
+    {
+      id: 1,
+      icon: <Check size={16} className="text-white" />,
+      color: "green",
+      question: "Do Missed Revenue Opportunities Keep You Up at Night?",
+      position: { angle: 30, radius: 220 },
+    },
+    {
+      id: 2,
+      icon: <Activity size={16} className="text-white" />,
+      color: "red",
+      question: "Still Relying on Gut Feelings to Make Critical Revenue Decisions?",
+      position: { angle: 90, radius: 220 },
+    },
+    {
+      id: 3,
+      icon: <Check size={16} className="text-white" />,
+      color: "green",
+      question: "Are Inefficiencies in Your Revenue Cycle Eroding Your Bottom Line?",
+      position: { angle: 150, radius: 220 },
+    },
+    {
+      id: 4,
+      icon: <Clock size={16} className="text-white" />,
+      color: "red",
+      question: "Is Manual Data Processing Slowing Down Your Growth?",
+      position: { angle: 210, radius: 220 },
+    },
+    {
+      id: 5,
+      icon: <Flag size={16} className="text-white" />,
+      color: "yellow",
+      question: "Is Your Current Revenue System Ready for all the inevitable disruptions?",
+      position: { angle: 270, radius: 220 },
+    },
+    {
+      id: 6,
+      icon: <Calendar size={16} className="text-white" />,
+      color: "yellow",
+      question: "Does your Revenue Intelligence give you the clarity you need?",
+      position: { angle: 330, radius: 220 },
+    },
+  ];
+
+  useEffect(() => {
+    let startTime = Date.now();
+    let rotationSpeed = 0.005; // degrees per millisecond
+
+    const animate = () => {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const rotationOffset = (elapsed * rotationSpeed) % 360;
+
+      // Update each card's position
+      solvingCards.forEach((card, index) => {
+        const cardElement = cardsRef.current[index];
+        if (cardElement) {
+          const angle = (card.position.angle + rotationOffset) % 360;
+          const radians = (angle * Math.PI) / 180;
+          const radius = card.position.radius;
+          
+          // Calculate position in the circle
+          const x = Math.cos(radians) * radius;
+          const y = Math.sin(radians) * radius;
+          
+          // Position the card and set z-index for proper layering
+          cardElement.style.transform = `translate(${x}px, ${y}px)`;
+          cardElement.style.zIndex = `${Math.round(Math.sin(radians) * 10) + 10}`;
+        }
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="py-16 md:py-24 bg-white text-black">
       <div className="container">
@@ -17,9 +114,9 @@ const Solutions = () => {
         </div>
 
         {/* "What are we solving" wheel */}
-        <div className="relative max-w-4xl mx-auto mb-20">
-          {/* Central circle */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white border-4 border-purple-600 rounded-full flex items-center justify-center z-30 solving-center-circle">
+        <div className="relative max-w-4xl mx-auto mb-20 h-[600px]">
+          {/* Center circle */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white rounded-full flex items-center justify-center z-50 solving-center-circle">
             <div className="text-center">
               <div className="text-xl font-bold text-white">What are we</div>
               <div className="text-3xl font-bold text-white">Solving?</div>
@@ -31,115 +128,49 @@ const Solutions = () => {
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border-2 border-dashed border-gray-300 z-10"></div>
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border-2 border-dashed border-gray-200 z-10"></div>
 
-          {/* Problem cards */}
-          <div className="w-full h-[600px] relative">
-            {/* Card 1 - Top Left */}
-            <div className="absolute top-0 left-[20%] transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-red-500 p-1 rounded-full mt-1">
-                      <Activity size={16} className="text-white" />
-                    </div>
-                    <p className="text-black text-sm">
-                      Are Your Systems Siloed and Blocking Execution?
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -bottom-4 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
-
-            {/* Card 2 - Top Right */}
-            <div className="absolute top-[15%] right-[10%] transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-green-500 p-1 rounded-full mt-1">
-                      <Check size={16} className="text-white" />
-                    </div>
-                    <p className="text-black text-sm">
-                      Are You Still Reacting Instead of Predicting?
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -bottom-4 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
+          {/* Gray connecting dots */}
+          {[30, 90, 150, 210, 270, 330].map((angle, i) => {
+            const radians = (angle * Math.PI) / 180;
+            const radius = 150; // Middle of the circle paths
+            const x = Math.cos(radians) * radius;
+            const y = Math.sin(radians) * radius;
             
-            {/* Card 3 - Mid Right */}
-            <div className="absolute top-[50%] right-0 transform translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-green-500 p-1 rounded-full mt-1">
-                      <Clock size={16} className="text-white" />
-                    </div>
-                    <p className="text-black text-sm">
-                      Are Manual Workflows Dragging Down Speed?
-                    </p>
-                  </div>
-                </div>
+            return (
+              <div 
+                key={`dot-${i}`}
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
+                style={{ 
+                  marginLeft: x, 
+                  marginTop: y 
+                }}
+              >
+                <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
               </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -bottom-4 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
+            );
+          })}
 
-            {/* Card 4 - Bottom Right */}
-            <div className="absolute bottom-[15%] right-[10%] transform translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-72">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-red-500 p-1 rounded-full mt-1">
-                      <Calendar size={16} className="text-white" />
+          {/* Problem cards */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
+            {solvingCards.map((card, index) => (
+              <div
+                key={card.id}
+                ref={(el) => (cardsRef.current[index] = el)}
+                className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 hover:scale-150 z-30"
+              >
+                <div className="bg-white shadow-lg rounded-lg p-4 w-64">
+                  <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
+                    <div className="flex items-start gap-2">
+                      <div className={`bg-${card.color}-500 p-1 rounded-full mt-1`}>
+                        {card.icon}
+                      </div>
+                      <p className="text-black text-sm">
+                        {card.question}
+                      </p>
                     </div>
-                    <p className="text-black text-sm">
-                      Are you waiting until the next quarterly review to identify what's off track?
-                    </p>
                   </div>
                 </div>
               </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
-
-            {/* Card 5 - Bottom */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-yellow-500 p-1 rounded-full mt-1">
-                      <TrendingDown size={16} className="text-white" />
-                    </div>
-                    <p className="text-black text-sm">
-                      Are Your Revenue Forecasts Static and Inaccurate?
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
-
-            {/* Card 6 - Bottom Left */}
-            <div className="absolute bottom-[15%] left-[10%] transform -translate-x-1/2 translate-y-1/2 z-20">
-              <div className="bg-white shadow-lg rounded-lg p-4 w-64">
-                <div className="bg-gray-100 rounded-lg p-4 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-yellow-500 p-1 rounded-full mt-1">
-                      <Flag size={16} className="text-white" />
-                    </div>
-                    <p className="text-black text-sm">
-                      Is Strategy Failing at the Execution Level?
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connection dot */}
-              <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-white"></div>
-            </div>
+            ))}
           </div>
         </div>
 
